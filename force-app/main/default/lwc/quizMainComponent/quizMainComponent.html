@@ -1,0 +1,295 @@
+<!--
+@description       : 
+@author            : ChangeMeIn@UserSettingsUnder.SFDoc
+@group             : 
+@last modified on  : 07-13-2021
+@last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+Modifications Log 
+Ver   Date         Author                               Modification
+1.0   05-27-2021   ChangeMeIn@UserSettingsUnder.SFDoc   Initial Version
+-->
+<template>
+  <lightning-card>
+    <div class="overallBG">
+    <!-- Showing Header based on isUserLoggedIn condition Starts-->
+      <template if:true={isUserLoggedIn}>
+        <div class="slds-page-header">
+          <div class="slds-page-header__row">
+            <div class="slds-page-header__col-title">
+              <div class="slds-media">
+                <div class="slds-media__figure">
+                  <span class="slds-icon_container slds-icon-standard-user" title="User">
+                    <lightning-icon icon-name="standard:user"></lightning-icon>
+                    <span class="slds-assistive-text">{userName}</span>
+                  </span>
+                </div>
+                <div class="slds-media__body">
+                  <div class="slds-page-header__name">
+                    <div class="slds-page-header__name-title">
+                      <h1>
+                        <span class="slds-page-header__title slds-truncate" title={userName}>{userName}</span>
+                      </h1>
+                    </div>
+                  </div>
+                  <p class="slds-page-header__name-meta">{userEmailId} . {givenUserScore} Score </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </template>
+    <!-- Showing Header based on isUserLoggedIn condition Ends-->
+          <!--Login Details -->
+          <template if:false={isUserLoggedIn}>
+          <lightning-card title="Login" icon-name="utility:people">
+              <div class="slds-grid slds-wrap" style="width:750px;">
+                      <div class="slds-col slds-size_1-of-2 slds-m-around_small">
+                              <lightning-input name="givenUserName" type="text" label="User Name" value={userName} maxlength="60" class="textInput slds-text-heading_small" ></lightning-input>
+                      </div>
+                      <div class="slds-col slds-size_1-of-2 "></div>
+                      <div class="slds-col slds-size_1-of-2 slds-m-around_small"> 
+                            <lightning-input name="givenUserEmail" type="text" label="User Email" value={userEmailId} class="textInput slds-text-heading_small" ></lightning-input>
+                      </div>
+                      <div class="slds-col slds-size_1-of-2"></div>
+                      <div class="slds-col slds-size_1-of-2 slds-m-around_small"> 
+                          <br/>
+                          <lightning-button variant="brand" label="Submit" title="Primary action" onclick={handleSubmitClick} class="slds-m-left_x-small"></lightning-button>
+                      </div>
+                    <div class="slds-col slds-size_1-of-2"></div>
+              </div>
+          </lightning-card>
+          </template>
+          <!-- Feedback Questions-->
+          <template if:true={showMessageFeedback}>
+            <div class="slds-text-heading_medium slds-text-color_success slds-m-around_small">
+              Thanks for the valuable Feedback !!!
+            </div>
+          </template>
+          <template if:true={isFeedbackAvailable}>
+            <template if:true={isUserLoggedIn}>
+          <lightning-card title="Feedback" icon-name="standard:feedback">
+            <template for:each={myQuestions} for:item="quiz">
+                <div key={quiz.id} class="slds-m-around_medium" style="width:950px;">
+                  <div><strong>{quiz.question}</strong></div>
+                  <div class="slds-grid slds-gutters slds-m-bottom_medium">
+                    <div class="slds-col">
+                      <lightning-input type="text" name={quiz.question} onchange={handleTextChange} value={quiz.answer} max-length="200"></lightning-input>
+                    </div>
+                  </div>
+                </div>
+            </template>
+            <!--Buttons for Submit and Reset buttons-->
+            <lightning-layout>
+              <lightning-layout-item>
+                  <lightning-button variant="success" label="Submit" onclick={handleFeedbackSubmit} class="slds-m-left_x-small">
+                  </lightning-button>
+                  <lightning-button variant="brand-outline" label="Reset" onclick={handleFeedbackReset} class="slds-m-left_x-small"></lightning-button>
+                </lightning-layout-item>
+            </lightning-layout>
+          </lightning-card>
+  </template>
+        </template>
+
+        <!-- Construction of Custom Lookup Component for Topic Search-->
+        <template if:true={showLookup}>
+        <lightning-card>
+          <div class="slds-m-around_small">
+                <c-quiz-reusable-lookup search-placeholder="Search Topic" 
+                                icon-name="utility:topic" 
+                                onlookupselected={handleTopicSelected}></c-quiz-reusable-lookup>
+            </div>
+        </lightning-card>
+        </template>
+        <!-- Construction of Tabset for Making them to select Type of Questions- Vertical Starts-->
+        <template if:true={isTopicPresent}>
+          <lightning-card>
+            <lightning-tabset variant="vertical">
+                <lightning-tab label="Basic" icon-name="utility:knowledge_base" class="my-tab">
+                  <template if:true={isBasic}>
+                    <div class="slds-m-around_small slds-box my-card" style="width:300px;">
+                    <lightning-card title={selectedTopicName} icon-name="utility:notebook" class="my-card">
+                        <p class="slds-p-horizontal_small">
+                          <marquee behaviour="scroll" direction="left">Total Questions - 20</marquee> &nbsp; <br/>
+                          <marquee behaviour="scroll" direction="right" scrollamount="10">Total Duration  - 20 mins</marquee>&nbsp; <br/>
+                        </p>
+                        <div slot="footer">
+                          <lightning-layout>
+                            <lightning-layout-item padding="around-small">
+                              <div class="slds-icon-eq slds-is-animated" title="Description of the icon when needed">
+                                <div class="slds-icon-eq__bar"></div>
+                                <div class="slds-icon-eq__bar"></div>
+                                <div class="slds-icon-eq__bar"></div>
+                                <span class="slds-assistive-text"></span>
+                              </div>
+                              </lightning-layout-item>
+                              <lightning-layout-item padding="around-small">
+                                <span class="slds-badge">Basic</span>
+                              </lightning-layout-item>
+                              <lightning-layout-item padding="around-small">
+                                <lightning-button variant="brand" 
+                                                  label="Select" 
+                                                  icon-name="standard:question_best"
+                                                  data-buttonname="Basic" 
+                                                  onclick={handleSelectTopic}></lightning-button>
+                              </lightning-layout-item>
+                            </lightning-layout>
+                        </div>
+                    </lightning-card>
+                    </div>
+                  </template>
+                </lightning-tab>
+                <lightning-tab label="Intermediate" icon-name="utility:education" class="my-tab">
+                  <template if:true={isIntermediate}>
+                    <div class="slds-m-around_small slds-box my-card" style="width:330px;">
+                      <lightning-card title={selectedTopicName} icon-name="utility:notebook" class="my-card">
+                        <p class="slds-p-horizontal_small">
+                          <marquee behaviour="scroll" direction="left">Total Questions - 20</marquee> &nbsp; <br/>
+                          <marquee behaviour="scroll" direction="right" scrollamount="10">Total Duration  - 20 mins</marquee>&nbsp; <br/>
+                        </p>
+                        <div slot="footer">
+                          <lightning-layout>
+                            <lightning-layout-item padding="around-small">
+                              <div class="slds-icon-eq slds-is-animated" title="Description of the icon when needed">
+                                <div class="slds-icon-eq__bar"></div>
+                                <div class="slds-icon-eq__bar"></div>
+                                <div class="slds-icon-eq__bar"></div>
+                                <span class="slds-assistive-text"></span>
+                              </div>
+                            </lightning-layout-item>
+                            <lightning-layout-item padding="around-small">
+                              <span class="slds-badge">Intermediate</span>
+                            </lightning-layout-item>
+                            <lightning-layout-item padding="around-small">
+                              <lightning-button variant="brand" 
+                                                label="Select" 
+                                                icon-name="standard:question_best" 
+                                                data-buttonname="Intermediate" 
+                                                onclick={handleSelectTopic}></lightning-button>
+                            </lightning-layout-item>
+                          </lightning-layout>
+                        </div>
+                      </lightning-card>
+                    </div>
+                  </template>
+                </lightning-tab>
+                <lightning-tab label="Advanced" icon-name="utility:advertising" class="my-tab">
+                  <template if:true={isAdvance}>
+                    <div class="slds-m-around_small slds-box my-card" style="width:300px;">
+                      <lightning-card title={selectedTopicName} icon-name="utility:notebook" class="my-card">
+                        <p class="slds-p-horizontal_small">
+                          <marquee behaviour="scroll" direction="left">Total Questions - 20</marquee> &nbsp; <br/>
+                          <marquee behaviour="scroll" direction="right" scrollamount="10">Total Duration  - 20 mins</marquee>&nbsp; <br/>
+                        </p>
+                        <div slot="footer">
+                          <lightning-layout>
+                            <lightning-layout-item padding="around-small">
+                              <div class="slds-icon-eq slds-is-animated" title="Description of the icon when needed">
+                                <div class="slds-icon-eq__bar"></div>
+                                <div class="slds-icon-eq__bar"></div>
+                                <div class="slds-icon-eq__bar"></div>
+                                <span class="slds-assistive-text"></span>
+                              </div>
+                            </lightning-layout-item>
+                            <lightning-layout-item padding="around-small">
+                              <span class="slds-badge">Advanced</span>
+                            </lightning-layout-item>
+                            <lightning-layout-item padding="around-small">
+                              <lightning-button variant="brand" 
+                                                label="Select" 
+                                                icon-name="standard:question_best"
+                                                data-buttonname="Advanced"  
+                                                onclick={handleSelectTopic}></lightning-button>
+                            </lightning-layout-item>
+                          </lightning-layout>
+                        </div>
+                      </lightning-card>
+                    </div>
+                  </template>
+                </lightning-tab>
+            </lightning-tabset>
+          </lightning-card>
+        </template>
+        <!-- Construction of Tabset for Making them to select Type of Questions- Vertical Ends-->
+       <!-- Construction of Questions and Asnwers card Starts-->
+        <template if:true={isExamLevelSelected}>
+          <lightning-card>
+            <div class="slds-m-around_small">
+              <b><strong>Time </strong></b> <c-quiz-countdown-timer time-val={timeVal}></c-quiz-countdown-timer>
+            </div>
+            <template for:each={visibleQuestion} for:item="question">
+              <div key={question.strQuestionId} class="slds-m-around_medium" style="width:650px;">
+                <div><strong>{question.strQuestion}</strong></div>
+                <div class="slds-m-around_small">
+                  <template if:true={question.isCheckbox}>
+                    <lightning-checkbox-group name={question.strQuestionId}
+                                              options={question.lstOptionsWrapper}
+                                              value={question.strUserSelectedAnswer}
+                                              onchange={handleCheckboxSelect}>
+                    </lightning-checkbox-group>
+                  </template>
+                  <template if:false={question.isCheckbox}>
+                    <lightning-radio-group name={question.strQuestionId}
+                                           options={question.lstOptionsWrapper}
+                                           value={question.setUserSelectedAnswer}
+                                           onchange={handleRadiobuttonSelect}>
+                  </lightning-radio-group>
+                  </template>
+                </div>
+              </div>
+            </template>
+            <div slot="footer" class="slds-var-m-horizontal_medium">
+              <c-quiz-pagination total-records={selectedQuestionDetailsSuccess}
+                                 onupdate={handleUpdateQuestionDetails}></c-quiz-pagination>
+            </div>
+          </lightning-card>
+        </template>
+        <!-- Construction of Questions and Answers card Ends--> 
+        <template if:true={showSubmit}>
+          <div class="slds-m-around_small">
+            <lightning-layout>
+              <lightning-layout-item padding="around-small">
+              <lightning-button label="Submit Answers"
+                                variant="brand"
+                                onclick={handleSubmitAnswers}
+                                name="submitAnswers">
+              </lightning-button>
+              </lightning-layout-item>
+            </lightning-layout>
+          </div>
+        </template>
+        <!--Showing Correct Answer Details -->
+        <template if:true={showAllAnswers}>
+            
+            <!-- Showing the list of correct Answers-->
+            <lightning-card>
+              <div class="slds-m-around_small slds-text-align_center">
+                <div class={isScoredFull}><strong>{userName} has scored {countQuestion} out of {selectedQuestionDetailsSuccess.length}</strong></div>
+              </div>
+              <lightning-layout>
+                <lightning-layout-item padding="around-small">
+                  <div class="slds-m-around_small" style="width:900px;"> 
+                    <template for:each={selectedQuestionDetailsSuccess} for:item="question">
+                      <div key={question.strQuestionId} class="slds-m-around_medium">
+                        <div><strong>{question.strQuestion}</strong></div>
+                        <div class="slds-grid slds-gutters slds-m-bottom_medium">
+                          <div class="slds-col slds-text-color_success">
+                            <lightning-input type="text" value={question.strCorrectAnswers} readonly></lightning-input>
+                          </div>
+                        </div>
+                      </div> 
+                    </template>
+                  </div>
+                </lightning-layout-item>
+                <lightning-layout-item padding="around-small">
+                  <c-quiz-visual-chart-component  str-user-name={givenUserDetails.strUserName}
+                                                    chart-values={valueCollection}
+                                                    chart-labels={labelCollection}></c-quiz-visual-chart-component>
+                </lightning-layout-item>
+              </lightning-layout>
+              
+
+            </lightning-card>
+        </template>
+      </div>
+      </lightning-card>
+</template>

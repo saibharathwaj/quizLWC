@@ -1,0 +1,10 @@
+<aura:component access="global"
+                controller="PicklistCustomApex"
+                implements="flexipage:availableForAllPageTypes,force:hasSObjectName">
+    <aura:attribute name="sObjectName" type="String"/>
+    Loading object : {!v.sObjectName}
+    <br/>
+    <aura:attribute name="dynamicObjectName" type="String"/>
+    Selected Object {!v.dynamicObjectName}
+    <aura:attribute name="dynamicPicklist" type="String"/>
+</aura:component>

@@ -1,0 +1,4 @@
+<aura:component extends="c:SuperComponent">
+	ChildBody {!v.body}
+    DDDD: {!v.Comp1}
+</aura:component>

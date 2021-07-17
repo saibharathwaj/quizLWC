@@ -1,0 +1,5 @@
+<aura:component >
+	<c:SubComponent>
+        Body Value
+    </c:SubComponent>
+</aura:component>

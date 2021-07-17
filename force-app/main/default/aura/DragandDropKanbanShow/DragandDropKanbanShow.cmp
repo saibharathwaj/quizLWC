@@ -1,0 +1,5 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes,force:appHostable,flexipage:availableForAllPageTypes" access="global" >
+	<c:DragandDropKanban  objName="Opportunity" 
+                         objFields="['Name', 'AccountId', 'Account.Name', 'CloseDate', 'StageName', 'Amount']"
+                         kanbanPicklistField="StageName"/>
+</aura:component>

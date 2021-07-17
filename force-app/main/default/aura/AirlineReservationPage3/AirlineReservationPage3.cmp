@@ -1,0 +1,94 @@
+<aura:component implements="force:hasRecordId,lightning:isUrlAddressable" 
+                controller="AirlineFlightDetails"
+                access="global">
+    <aura:attribute name="passportNumber" type="String" default=""/>
+    <aura:attribute name="passengerAddress" type="String" default=""/>
+    <aura:attribute name="passengerEmail" type="String" default=""/>
+    <aura:attribute name="passengerName" type="String" default=""/>
+    <aura:attribute name="passengerState" type="String" default=""/>
+    <aura:attribute name="passengerTicket" type="Integer" default=""/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="c__flightName" type="String" default=""/>
+    <aura:attribute name="flightIdentity" type="String" default=""/>
+    <aura:attribute name="recordInsert" type="Id" default=""/>
+    <br/>
+    <br/>
+    <!-- Layout Item for Flight Details and Flight Number-->
+    <div class="c-container">
+        <lightning:layout >
+            <lightning:layoutItem padding="around-small">
+                <div class="header-column">
+                    FlightName: <lightning:formattedText value="{!v.c__flightName}"/>
+                </div>
+                <br/>
+            </lightning:layoutItem>
+            <lightning:layoutItem padding="around-small">
+                <div class="header-column">
+                    Flight Number: <lightning:formattedText value= "{!v.flightIdentity}"/>
+                </div>
+            </lightning:layoutItem>
+        </lightning:layout>
+    </div>
+    
+    <div id="passngrDetails">
+        <fieldset>
+            <legend> Passenger Information </legend>
+        </fieldset>
+    </div>
+    <div id="pd">
+        <div class="slds-grid slds-grid_vertical">
+            <div class="slds-col">
+                <span>
+                    <lightning:input aura:id="pName"
+                                     name="pName"
+                                     label="Passenger Name"
+                                     value="{!v.passengerName}"/>
+                </span>
+            </div>
+            
+            <div class="slds-col">
+                <span>
+                    <lightning:input aura:id="pseats"
+                                     type="number"
+                                     name="pSeats"
+                                     label="No of Seats"
+                                     value="{!v.passengerTicket}"/>
+                </span>
+            </div>
+            
+            <div class="slds-col">
+                <lightning:input aura:id="pAddress"
+                                 name="pAddress"
+                                 label="Passenger Address"
+                                 value="{!v.passengerAddress}"/>
+            </div>
+            
+            <div class="slds-col">
+                <lightning:input aura:id="pEmail"
+                                 type="email"
+                                 name="pEmail"
+                                 label="Passenger Email"
+                                 value="{!v.passengerEmail}"/>
+            </div>
+            
+            <div class="slds-col">
+                <lightning:input aura:id="pState"
+                                 name="pState"
+                                 label="Passenger State"
+                                 value="{!v.passengerState}"/>
+            </div>
+            
+            <div class="slds-col">
+                <lightning:input aura:id="ppNumber"
+                                 name="ppNumber"
+                                 label="Passport Number"
+                                 value="{!v.passportNumber}"/>
+            </div>
+        </div>
+    </div>
+    <div id="buttondiv" class="slds-p-around_x-small slds-align_absolute-center">
+        <lightning:button variant="brand"
+                          label="Make Reservation"
+                       	  onclick="{!c.handleClick}"/>
+    </div>
+</aura:component>

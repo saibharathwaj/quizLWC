@@ -1,0 +1,112 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:lightningQuickAction"
+                access="global">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="optionsRole" type="List"/>
+    <aura:attribute name="selectedRole" type="String"/>
+    <aura:attribute name="secQuiz" type="List"/>
+    <div>
+        <!-- 
+  Role of the Employee
+  -->
+        <lightning:layout>
+            <lightning:layoutItem padding="around-small" size="4">
+                <lightning:card title="Role" iconName="utility:adduser">
+                    <lightning:select name="roleselect" 
+                                      label="Role" 
+                                      required="true" 
+                                      value="{!v.selectedRole}"
+                                      onchange="{!c.selectRoleValue}">
+                        <aura:iteration items="{!v.optionsRole}" var="option">
+                            <option text="{!option.label}" 
+                                    value="{!option.id}" 
+                                    selected="{!option.selected}"
+                                    />
+                        </aura:iteration>
+                    </lightning:select>
+                </lightning:card>
+            </lightning:layoutItem>
+        </lightning:layout>
+    </div>
+    <br/>
+    &nbsp;
+    <div id="securityQuestions">
+        <lightning:layout>
+            <lightning:layoutItem padding="around-small" size="4">
+                <lightning:card title="Security questions" iconName="utility:sentiment_neutral">
+                    <lightning:select name="Question 1" label="Question 1" required="true" onchange="{!c.doValueComb}">
+                        <aura:iteration items="{!v.secQuiz}" var="option" indexVar="i">
+                            <option text="{!option.label}" 
+                                    value="{!option.id}" 
+                                    selected="{!option.selected}"
+                                    data-index="{!i}"
+                                    onchange="{!c.doChange}"/>
+                        </aura:iteration>
+                    </lightning:select>
+                    <lightning:input name="Answer 1" label="Answer 1">
+                    </lightning:input>
+               
+            
+            &nbsp;
+               
+                    <lightning:select name="Question 2" label="Question 2" required="true" onchange="{!c.doValueComb}">
+                        <aura:iteration items="{!v.secQuiz}" var="option" indexVar="i">
+                            <option text="{!option.label}" 
+                                    value="{!option.id}" 
+                                    selected="{!option.selected}"
+                                    data-index="{!i}"
+                                    onchange="{!c.doChange}"/>
+                        </aura:iteration>
+                    </lightning:select>
+                    <lightning:input name="Answer 2" label="Answer 2">
+                    </lightning:input>
+                
+            
+            &nbsp;
+            
+                    <lightning:select name="Question 3" label="Question 3" required="true" onchange="{!c.doValueComb}">
+                        <aura:iteration items="{!v.secQuiz}" var="option" indexVar="i">
+                            <option text="{!option.label}" 
+                                    value="{!option.id}" 
+                                    selected="{!option.selected}"
+                                    data-index="{!i}"
+                                    onchange="{!c.doChange}"/>
+                        </aura:iteration>
+                    </lightning:select>
+                    <lightning:input name="Answer 3" label="Answer 3">
+                    </lightning:input>
+               
+            &nbsp;
+             
+                    <lightning:select name="Question 4" label="Question 4" required="true" onchange="{!c.doValueComb}">
+                        <aura:iteration items="{!v.secQuiz}" var="option" indexVar="i">
+                            <option text="{!option.label}" 
+                                    value="{!option.id}" 
+                                    selected="{!option.selected}"
+                                    data-index="{!i}"
+                                    onchange="{!c.doChange}"/>
+                        </aura:iteration>
+                    </lightning:select>
+                    <lightning:input name="Answer 4" label="Answer 4">
+                    </lightning:input>
+              
+            
+            &nbsp;
+             
+                    <lightning:select name="Question 5" label="Question 5" required="true" onchange="{!c.doValueComb}">
+                        <aura:iteration items="{!v.secQuiz}" var="option" indexVar="i">
+                            <option text="{!option.label}" 
+                                    value="{!option.id}" 
+                                    selected="{!option.selected}"
+                                    data-index="{!i}"
+                                    onchange="{!c.doChange}"/>
+                        </aura:iteration>
+                    </lightning:select>
+                    <lightning:input name="Answer 5" label="Answer 5">
+                    </lightning:input>
+                    
+                </lightning:card>
+            </lightning:layoutItem>
+            
+        </lightning:layout>
+    </div>
+</aura:component>

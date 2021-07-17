@@ -1,0 +1,252 @@
+<template>
+    <div>
+<div>
+    <div class="slds-m-around__small">
+<fieldset class="slds-form-element">
+    <legend class="slds-form-element__legend slds-form-element__label" style="text-align:center; font-size:15px; color:darkgreen;">
+        Corona Statistics</legend>
+            <div class="slds-form-element__control" style="text-align:center;">
+                <div class="slds-visual-picker slds-visual-picker_medium">
+                    <input type="radio" id="visual-picker-88" value="visual-picker-88" name="options" />
+                            <label for="visual-picker-88">
+                                <span class="slds-visual-picker__figure slds-visual-picker__text slds-align_absolute-center">
+                                <span>
+                                <span class="slds-text-heading_large" style="color:red;" onclick={worldClick}>World</span>
+                                <span class="slds-text-title"></span>
+                                </span>
+                                </span>
+                                <span class="slds-visual-picker__body">
+                                <span class="slds-text-heading_small">Corona Impact - All over the world</span>
+                                <span class="slds-text-title">Complete details of Infected,Deceased, Recovered</span>
+                                </span>
+                                <span class="slds-icon_container slds-visual-picker__text-check">
+                                    </span>
+                            </label>
+                </div>
+
+                <div class="slds-visual-picker slds-visual-picker_medium">
+                    <input type="radio" id="visual-picker-89" value="visual-picker-89" name="options" />
+                            <label for="visual-picker-89">
+                                    <span class="slds-visual-picker__figure slds-visual-picker__text slds-align_absolute-center">
+                                    <span>
+                                    <span class="slds-text-heading_large" style="color:Blue" onclick={indiaClick}>India</span>
+                                    </span>
+                                    </span>
+                                    <span class="slds-visual-picker__body">
+                                        <span class="slds-text-heading_small" style="color:Blue">Corona Impacts - India</span>
+                                        <span class="slds-text-title" style="color:Blue">List of Impacted States</span>
+                                        </span>
+                                        <span class="slds-icon_container slds-visual-picker__text-check">
+                                        </span>
+                            </label>
+                </div>
+
+                <div class="slds-visual-picker slds-visual-picker_medium">
+                        <input type="radio" id="visual-picker-90" value="visual-picker-90" name="options" />
+                                <label for="visual-picker-90">
+                                    <span class="slds-visual-picker__figure slds-visual-picker__text slds-align_absolute-center">
+                                    <span>
+                                    <span class="slds-text-heading_large" style="color:green" onclick={tnClick}>Tamil Nadu</span>
+                                            <span class="slds-text-title"></span>
+                                            </span>
+                                    </span>
+                                    <span class="slds-visual-picker__body">
+                                        <span class="slds-text-heading_small" style="color:green">Corona Impacts - Tamil Nadu</span>
+                                        <span class="slds-text-title" style="color:green">List of Impacted, Recovered, Active and Deceased Cases in Tamil Nadu</span>
+                                    </span>
+                                    <span class="slds-icon_container slds-visual-picker__text-check">
+                                                                                </span>
+                                </label>
+                    </div>
+                    <div class="slds-visual-picker slds-visual-picker_medium">
+                        <input type="radio" id="visual-picker-91" value="visual-picker-91" name="options" />
+                                <label for="visual-picker-91">
+                                    <span class="slds-visual-picker__figure slds-visual-picker__text slds-align_absolute-center">
+                                    <span>
+                                    <span class="slds-text-heading_large" style="color:blueviolet" onclick={testedResultClick}>Tested Results</span>
+                                            <span class="slds-text-title"></span>
+                                            </span>
+                                    </span>
+                                    <span class="slds-visual-picker__body">
+                                        <span class="slds-text-heading_small" style="color:blueviolet">Corona Test Samples </span>
+                                        <span class="slds-text-title" style="color:blueviolet">Test Samples - All Over India</span>
+                                    </span>
+                                    <span class="slds-icon_container slds-visual-picker__text-check">
+                                                                                </span>
+                                </label>
+                    </div>
+                    <!--<div class="slds-visual-picker slds-visual-picker_medium">
+                        <input type="radio" id="visual-picker-92" value="visual-picker-92" name="options" />
+                                <label for="visual-picker-92">
+                                    <span class="slds-visual-picker__figure slds-visual-picker__text slds-align_absolute-center">
+                                    <span>
+                                    <span class="slds-text-heading_large" style="color:chocolate" onclick={statClick}>Stats</span>
+                                            <span class="slds-text-title"></span>
+                                            </span>
+                                    </span>
+                                    <span class="slds-visual-picker__body">
+                                        <span class="slds-text-heading_small" style="color:chocolate" >Corona Stats </span>
+                                        <span class="slds-text-title" style="color:chocolate">Data Analsysis of Corona Cases from Feb to till Date</span>
+                                    </span>
+                                    <span class="slds-icon_container slds-visual-picker__text-check">
+                                                                                </span>
+                                </label>
+                    </div>-->
+        </div>
+    </fieldset>
+</div>
+</div>
+
+
+<div class="slds-m-around__small">
+    <!--For Showcasing the World Corona Stat Details Starts-->
+    <template if:true={worldFlag}>
+        <lightning-layout horizontal-align="space">
+            <lightning-layout-item padding="around-small">
+                <lightning-tabset variant="vertical">
+                    <lightning-tab label="Corona- World Wide" icon-name="utility:world">
+                            <c-corona-component></c-corona-component>
+                        </lightning-tab>
+                </lightning-tabset>
+            </lightning-layout-item>
+        </lightning-layout>
+    </template>
+        <!--For Showcasing the World Corona Stat Details Ends-->
+        <!-- For Showcasing India's states Corona Count Starts-->
+        <template if:true={indiaFlag}>
+        <lightning-layout horizontal-align="space">
+            <lightning-layout-item padding="around-small">
+                <lightning-tabset variant="vertical">
+                    <lightning-tab label="Corona- India Wide" icon-name="utility:world">
+                        <div class="slds-m-around__small" style="height:300px;">
+                        <lightning-datatable
+                        key-field="id"
+                        columns={statesColumn}
+                        data={statesData}
+                        hide-checkbox-column
+                        default-sort-direction={defaultSortDirection}
+                        sorted-direction={sortDirection}
+                        sorted-by={sortedBy}
+                        onsort={onHandleSort}>
+                        </lightning-datatable>
+                        </div>
+                        </lightning-tab>
+                </lightning-tabset>
+            </lightning-layout-item>
+        </lightning-layout>
+        </template>
+        <!-- For Showcasing India's states Corona Count Ends-->
+        <!-- For Showcasing India's testing facility Starts-->
+        <template if:true={testedResultflag}>
+            <div class="slds-m-around__small" style="text-align:center; position:center;">
+        <div class="demo-only" style="display:flex;width:20rem;height:37.5rem;text-align:center;">
+            <div class="slds-split-view_container slds-is-open" style="position:center;">
+               
+               <article aria-hidden="false" id="split-view-id" class="slds-split-view slds-grid slds-grid_vertical slds-grow">
+                  <header class="slds-split-view__header">
+                     <div class="slds-grid slds-grid_vertical-align-center slds-m-bottom_xx-small">
+                        <div class="slds-has-flexi-truncate">
+                           <div class="slds-media slds-media_center">
+                              <div class="slds-media__figure">
+                                 <div class="slds-icon_container slds-icon-standard-lead">
+                                        <lightning-icon icon-name="utility:advertising" size="xx-small" title="Reports"></lightning-icon>
+                                    <span class="slds-assistive-text">Reports</span>
+                                 </div>
+                              </div>
+                              <div class="slds-media__body">
+                                 <h1 class="slds-text-heading_small slds-text-color_default slds-p-right_x-small">
+                                    <button class="slds-button slds-button_reset slds-type-focus slds-truncate" aria-haspopup="true" title="">
+                                       <span class="slds-grid slds-has-flexi-truncate slds-grid_vertical-align-center">
+                                          <span class="slds-truncate" title="My Leads">India Stats</span>
+                                          <lightning-icon icon-name="utility:down" size="xx-small" title="down"></lightning-icon>
+                                       </span>
+                                    </button>
+                                 </h1>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="slds-no-flex slds-grid">
+                           <button class="slds-button slds-button_icon slds-button_icon-border-filled" aria-haspopup="true" title="More Actions">
+                              <lightning-icon icon-name="utility:down" size="xx-small" title="updated"></lightning-icon>
+                              <span class="slds-assistive-text">More Actions</span>
+                           </button>
+                        </div>
+                     </div>
+                     <div class="slds-grid slds-grid_vertical-align-center">
+                        <p class="slds-text-body_small slds-text-color_weak">Updated just now</p>
+                        <div class="slds-no-flex slds-grid slds-col_bump-left">
+                           <div class="slds-button-group">
+                              <button class="slds-button slds-button_icon slds-button_icon slds-button_icon-container-more" aria-haspopup="true" title="Display As Split View">
+                                <lightning-icon icon-name="utility:filterList" size="xx-small" title="Spit View"></lightning-icon>
+                                 <lightning-icon icon-name="utility:side_list" size="xx-small" title="Spit View"></lightning-icon>
+                                 <span class="slds-assistive-text">Display As Split View</span>
+                              </button>
+                           </div>
+                           <div class="slds-button-group">
+                              <button class="slds-button slds-button_icon slds-button_icon slds-button_icon-container" title="Refresh List">
+                                <lightning-icon icon-name="utility:refresh" size="xx-small" title="Refresh"></lightning-icon>
+                                 <span class="slds-assistive-text">Refresh List</span>
+                              </button>
+                           </div>
+                        </div>
+                     </div>
+                  </header>
+                  <div class="slds-grid slds-grid_vertical">
+                     <div class="slds-split-view__list-header slds-grid">
+                        <span class="slds-assistive-text">Sorted by:</span>
+                        <span>
+                            Impact Score
+                            <lightning-icon icon-name="utility:down" size="xx-small" title="Spit View"></lightning-icon>
+                        </span>
+                        <span class="slds-assistive-text">- Descending</span>
+                     </div>
+                     <ul aria-multiselectable="true" class="slds-scrollable_y" role="listbox" 
+                        aria-label="Select an item to open it in a new workspace tab.">
+                        <template for:each={testedLabs} for:item="labs">
+                                <li class="slds-split-view__list-item" role="presentation" key={labs.updatetimestamp}>
+                                         <a href="javascript:void(0);" aria-selected="false" role="option" class="slds-split-view__list-item-action slds-grow slds-has-flexi-truncate" tabindex="0">
+                                            <div class="slds-grid slds-wrap">
+                                                    <span class="slds-truncate slds-text-body_regular slds-text-color_default" title={labs.updatetimestamp}>{labs.updatetimestamp}</span>
+                                                    <span class="slds-truncate slds-col_bump-left" title={labs.totalsamplestested}>Total Samples -{labs.totalsamplestested}</span>
+                                            </div>
+                                            <div class="slds-grid slds-wrap">
+                                                    <span class="slds-truncate" title={labs.totalpositivecases}>Total Positive -{labs.totalpositivecases}</span>
+                                                    <span class="slds-truncate slds-col_bump-left" title={labs.totalindividualstested}>Total Individual Tested -{labs.totalindividualstested}</span>
+                                            </div>
+                                        </a>
+                                </li>
+                       </template>
+                     </ul>
+                  </div>
+               </article>
+            </div>
+         </div>
+         </div>
+         </template>
+        <!-- For Showcasing India's testing facility Ends-->
+        <!-- For Showcasing TamilNadu Details starts-->
+        <template if:true={tnFlag}>
+            <lightning-layout horizontal-align="space">
+                <lightning-layout-item padding="around-small">
+                    <lightning-tabset variant="vertical">
+                        <lightning-tab label="Corona - TN Wide" icon-name="utility:world">
+                            <div>
+                            <lightning-datatable
+                            key-field="id"
+                            columns={statewiseColumn}
+                            data={statewiseData}
+                            >
+                            </lightning-datatable>
+                            </div>
+                            </lightning-tab>
+                    </lightning-tabset>
+                </lightning-layout-item>
+            </lightning-layout>
+            </template>
+        <!-- For Showcasing TamilNadu Details Ends-->
+        <!-- Charts Starts-->
+        
+        <!-- Chart Ends-->
+</div>
+</div>
+</template>

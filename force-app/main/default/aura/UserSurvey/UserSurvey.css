@@ -1,0 +1,15 @@
+.THIS .h2 {
+    font-weight: inherit;
+    font-size: 3em;
+    position:absolute;
+}
+.THIS .heading {
+    margin:auto;
+}
+.THIS .slds-truncate {
+    max-width:100%;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    padding:inherit;
+}

@@ -1,0 +1,115 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:appHostable,forceCommunity:availableForAllPageTypes"
+                access="global"
+                controller="DynamicMultiSelectPicklistApex">
+    <aura:attribute type="Integer" name="currentRating"/>
+    <aura:attribute type="Integer" name="newRating" default="0"/>
+    <aura:attribute name="nameInp" type="String"/>
+    <aura:attribute name="depInp" type="String"/>
+    <aura:attribute name="hireDate" type="date"/>
+    <aura:attribute name="trainingDate" type="date"/>
+    <aura:attribute name="deptManager" type="String"/>
+    <aura:attribute name="primaryInst" type="String"/>
+    <aura:attribute name="surveyDetails" type="List"/>
+    <ltng:require styles="/resource/RatingPlugin/css/jquery.raty.css"
+                  scripts="/resource/RatingPlugin/js/jquery.js, 
+                           /resource/RatingPlugin/js/jquery.raty.js"
+                  afterScriptsLoaded="{!c.doInit}"/>
+    <div class="slds-m-around__small">
+        <div id="heading" style="text-align:center; color:black;
+                                 font-family:Arial; font-style:bold; 
+                                 font-size:30px;">
+            <h2>Employee Training Survey</h2>
+        </div>
+        <br/>
+        <br/>
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col">
+                <lightning:input name="nameSurvey" 
+                                 type="String"
+                                 label="Name" 
+                                 value="{!v.nameInp}"></lightning:input>
+                <br/>
+                <lightning:input name="deptSurvey"
+                                 type="String"
+                                 label="Department"
+                                 value="{!v.depInp}"/>
+                <br/>
+            </div>
+            <div class="slds-col">
+                <lightning:input name="hireSurvey"
+                                 type="Date"
+                                 label="Hire Date"
+                                 value="{!v.hireDate}"/>
+                <br/>
+                <lightning:input name="trainingDate"
+                                 type="Date"
+                                 label="Training Date"
+                                 value="{!v.trainingDate}"/>
+            </div>
+            <div class="slds-col">
+                <lightning:input name="primaryInstructor"
+                                 type="String"
+                                 label="Primary Instructor"
+                                 value="{!v.primaryInst}"/>
+                <br/>
+                <lightning:input name="deptSurveyManager"
+                                 type="String"
+                                 label="Department Manager"
+                                 value="{!v.deptManager}"/>
+            </div>
+        </div>
+    </div>
+    <div class="slds-m-around__small slds-scrollable" >
+        <div id="contentHeading" style="text-align:center; color:black;
+                                 font-family:Arial; font-style:bold; 
+                                 font-size:20px;">
+            Please rate the following information on a scale of 1 to 5 , with being 'Strongly Agree' and 1 being 'Strongly Disagree'
+        </div>
+        <br/>
+        <table class="slds-table slds-table_cell-buffer slds-table_header-hidden slds-scrollable__x">
+            <thead class="slds-assistive-text">
+                <tr class="slds-line-height_reset">
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Survey Question">Survey Question</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Rating">Rating</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Current Rating">Current Rating</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <aura:iteration var="item" items="{!v.surveyDetails}">
+                    <tr class="slds-hint-parent">
+                        <td data-label="{!item.Survey_Content__c}">
+                        	<div class="slds-truncate" 
+                                 title="{!item.Survey_Content__c}"
+                                 >
+                        		{!item.Survey_Content__c}
+                        	</div>
+                    	</td>
+                    	<td data-label="{!item.Rating__c}">
+                        	<div class="slds-truncate" title="{!item.Rating__c}">
+                               <!-- <div aura:id="starRating" 
+                                     class="star-rating"
+                                     data-value="{!item.Id +'~'+ item.Rating__c}" 
+                                     onclick="{!c.starRating}"></div>-->
+                                <c:StarRating value="{!item.Rating__c}" 
+                                              readonly="false"
+                                              ids="{!item.Id+'~'+item.Survey_Content__c}"
+                                              />
+                        	</div>
+                    	</td>
+                        <td data-label="{!v.currentRating}">
+                            <div class="slds-truncate" title="Current Rating">
+                                {!v.currentRating}
+                            </div>
+                        </td>
+                    </tr>
+                </aura:iteration>
+            </tbody>
+        </table>
+    </div>
+</aura:component>

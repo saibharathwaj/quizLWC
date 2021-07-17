@@ -1,0 +1,5 @@
+<aura:tokens>
+    <aura:token name="cardBackgroundColor" value="#EEEEEE"/>
+    <aura:token name="cardFontColor" value="#000000"/>
+    <aura:token name="overallSiteColor" value="#c5d5cb"/>
+</aura:tokens>

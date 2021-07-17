@@ -1,0 +1,54 @@
+<template>
+<!--
+    <div class="slds-p-around__small">
+        <div class="slds-grid">
+            <div class="slds-col slds-p-horizontal_medium">
+                <span>
+                    <div class="slds-size_3-of-4">
+                        <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around_x-small" style="height:200px; width:50%;">
+                            Corona Widespread
+                            <lightning-carousel>
+                                <lightning-carousel-image
+                                                    width="50%"
+                                                    height="200px"
+                                                    src={corona1Img}
+                                                    header="COVID-19 Symptoms and Warning Signs"
+                                                    description="Source: Centers for Disease Control and Prevention">
+                                </lightning-carousel-image>
+                                <lightning-carousel-image
+                                                    width="50%"
+                                                    height="200px"
+                                                    src={corona2Img}
+                                                    header="COVID-19 Prevention Tips"
+                                                    description="Do and Don't">
+                                </lightning-carousel-image>
+                                <lightning-carousel-image
+                                                    width="50%"
+                                                    height="200px"
+                                                    src={corona3Img}
+                                                    header="COVID-19 Infected Countries"
+                                                    description="Countries with Confirmed Corona Cases">
+                                </lightning-carousel-image>
+                            </lightning-carousel>
+                        </div>
+                    </div>
+                </span>    
+            </div>
+        </div>
+    </div>
+-->
+    <div>
+        <div class="slds-m-around__small" style="height:300px;">
+            <lightning-datatable
+                                key-field="id"
+                                columns={columns}
+                                data={data}
+                                hide-checkbox-column
+                                default-sort-direction={defaultSortDirection}
+                                sorted-direction={sortDirection}
+                                sorted-by={sortedBy}
+                                onsort={onHandleSort}>
+            </lightning-datatable>
+        </div>    
+    </div>
+</template>

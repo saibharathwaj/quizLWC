@@ -1,0 +1,44 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 07-13-2021
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+  Modifications Log 
+  Ver   Date         Author                               Modification
+  1.0   07-09-2021   ChangeMeIn@UserSettingsUnder.SFDoc   Initial Version
+-->
+<template>
+    <template if:true={showPerf}>
+    <lightning-card title={selectedTopicName}>
+        <div class="slds-m-around_small">
+         <h2>  <i> Maximum Marks Score : {maxMarks}</i> &nbsp;<br/>
+           <i> Minimum Marks Score : {minMarks}</i> &nbsp; <br/></h2>
+        </div>
+        <div class="demo-only demo-only_viewport" style="height:4.5rem">
+            <div class="slds-notification-container">
+                <div aria-live="assertive" aria-atomic="true" class="slds-assistive-text">Flow ScoreCard</div>
+                <section class="slds-notification" role="dialog" aria-labelledby="noti52" aria-describedby="dialog-body-id-43">
+                    <div class="slds-notification__body" id="dialog-body-id-43">
+                        <a class="slds-notification__target slds-media" href="#">
+                            <span class="slds-icon_container slds-icon-standard-event slds-media__figure" title="event">
+                                <lightning-icon icon-name="standard:event"></lightning-icon>
+                            </span>
+                            <div class="slds-media__body">
+                                <h2 class="slds-text-heading_small slds-m-bottom_xx-small" id="noti52">
+                                    <span class="slds-assistive-text">Flow ScoreCard</span>{selectedTopicName}
+                                    <p>High Score - {maxMarks}*</p>
+                                    <p>Low Score - {minMarks}*</p>
+                                </h2>
+                            </div>
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </div>
+       <div class="slds-var-m-around_small">
+                <div class="chart1" lwc:dom="manual"></div>
+       </div>
+      </lightning-card>
+      </template>
+</template>

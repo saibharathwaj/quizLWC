@@ -1,0 +1,28 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 05-16-2021
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+  Modifications Log 
+  Ver   Date         Author                               Modification
+  1.0   05-16-2021   ChangeMeIn@UserSettingsUnder.SFDoc   Initial Version
+-->
+<template>
+    <lightning-card title="Conditional Rendering">
+        <div class="slds-var-m-around_small">
+            <lightning-button variant="brand"
+                             label="Show Data"
+                             title="Show Data"
+                             onclick={handleClick}
+                             class="slds-var-m-left_x-small">
+                </lightning-button>
+                <template if:true={isVisible}>
+                    <div>Welcome to Zero to Hero Series</div>
+                </template>
+                <template if:false={isVisible}>
+                    <div>You cant see the data. Please click the button</div>
+                </template>
+        </div>
+    </lightning-card>
+</template>

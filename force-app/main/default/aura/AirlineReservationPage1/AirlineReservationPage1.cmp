@@ -1,0 +1,93 @@
+<aura:component implements="lightning:isUrlAddressable,force:appHostable,flexipage:availableForRecordHome" access="global">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="today" type="Date" default=""/>
+    <aura:attribute name="arrivalDate" type="Date" default=""/>
+    <aura:attribute name="url" type="String"/>
+    <lightning:navigation aura:id="navService"/>
+    <aura:attribute name="pageReference" type="Object"/>
+    <aura:attribute 
+                    name="fromPlacePicklist" 
+                    type="String[]" 
+                    default="['None','Delhi Airport','Mumbai Airport', 'Chennai Airport']"/>
+    <aura:attribute 
+                    name="toPlacePicklist"
+                    type="String[]"
+                    default="['None','Delhi Airport','Mumbai Airport','Chennai Airport']"/>
+    <aura:attribute 
+                    name="travellerPreference" 
+                    type="String[]"
+                    default="['None','Economy','Premium Economy','Business Travel']"/>
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col">
+            <span>
+            	<lightning:select aura:id="fromPlace"
+                                  name="FromPlace" 
+                                  label="From Place" 
+                                  required="true">
+                    <aura:iteration items="{!v.fromPlacePicklist}" var="val">
+                        <option value="{!val}">{!val}</option>
+                    </aura:iteration>
+                </lightning:select>
+            </span>
+        </div>
+        <div class="slds-col">
+            <span>
+            	<lightning:select aura:id="toPlace"
+                                  name="ToPlace" 
+                                  label="To Place" 
+                                  required="true">
+                    <aura:iteration items="{!v.toPlacePicklist}" var="val">
+                        <option value="{!val}">{!val}</option>
+                    </aura:iteration>
+                </lightning:select>
+            </span>
+        </div>
+        <div class="slds-col">
+            <span>
+            	<lightning:select aura:id="travelPref"
+                                  name="TravellerPreference" 
+                                  label="Traveller Preference" 
+                                  required="true">
+                    <aura:iteration items="{!v.travellerPreference}" var="val">
+                        <option value="{!val}">{!val}</option>
+                    </aura:iteration>
+                </lightning:select>
+            </span>
+        </div>
+        <div class="slds-col">
+            <span>
+                <!--<ui:inputDate aura:id="depDate" 
+                              label="Departure Date"
+                              class="field"
+                              value="{!v.today}"
+                              displayDatePicker="true"/>-->
+                <lightning:input aura:id="depDate"
+                                 type="date"
+                                 name="Departure Date"
+                                 value="{!v.today}"
+                                 label="Departure Date"/>
+            </span>
+        </div>
+        <div class="slds-col">
+            <span>
+               <!-- <ui:inputDate aura:id="arrDate"
+                              label="Arrival Date"
+                              class="field"
+                              value="{!v.arrivalDate}"
+                              displayDatePicker="true"/>-->
+                <lightning:input aura:id="arrDate"
+                                 type="date"
+                                 name="Arrival Date"
+                                 value="{!v.arrivalDate}"
+                                 label="Arrival Date"/>
+            </span>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <div id="buttondiv" class="slds-p-around_x-small slds-align_absolute-center">
+        <lightning:button variant="brand"
+                          label="Search"
+                       	  onclick="{!c.handleClick}"/>
+    </div>
+</aura:component>

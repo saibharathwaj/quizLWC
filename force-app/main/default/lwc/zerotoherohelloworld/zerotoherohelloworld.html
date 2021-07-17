@@ -1,0 +1,45 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 05-16-2021
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+  Modifications Log 
+  Ver   Date         Author                               Modification
+  1.0   04-18-2021   ChangeMeIn@UserSettingsUnder.SFDoc   Initial Version
+-->
+<template>
+   <!--<div>
+        <h2>{strMessage}</h2>
+        <h2>{strMessage} is the course name of {strTitle}</h2>
+    </div>
+    <div>
+        <input type="text" onkeyup={changeHandler}/>
+    </div>-->
+    <div>
+        <lightning-card title="Two way data binding">
+           <!-- <input type="text" onkeyup={changeHandler}/>-->
+           <div class="slds-m-around_small">
+           <lightning-input type="text" label="Enter Course Name" onkeyup={changeHandler}></lightning-input>
+            <h2>{strMessage} is the course name of {strTitle}</h2>
+            </div>
+        </lightning-card>
+    </div>
+    <div>
+        <lightning-card title="@track properties">
+           <!-- <input type="text" onkeyup={changeHandler}/>-->
+           <div class="slds-m-around_small">
+           <lightning-input type="text" label="Enter City Name" onkeyup={trackHandler}></lightning-input>
+            <h2>{address.city} is my city</h2>
+            </div>
+        </lightning-card>
+    </div>
+    <div>
+        <lightning-card title="Getter Example">
+           <div class="slds-m-around_small">
+            <div> First User - {firstUser}</div>
+            <div>Multiplied Value - {multipleCalculation}</div>
+            </div>
+        </lightning-card>
+    </div>
+</template>

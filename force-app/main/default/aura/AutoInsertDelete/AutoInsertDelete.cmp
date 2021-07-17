@@ -1,0 +1,77 @@
+<aura:component controller="AutoInsertDeleteApex"
+                access="global"
+                implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction"
+                >
+        <aura:attribute name="records" type="Object[]"/>
+        <aura:attribute name="rows" type="Integer"/>
+        <aura:attribute name="visible" type="boolean" default="false"/>
+        <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+        <div id="cardIds" class="slds-m-around__small">
+            <lightning:card title="Add Rows, Delete Rows">
+                <aura:set attribute="actions">
+                    <lightning:button label="New" variant="brand" title="New" onclick="{!c.addRows}">
+                    </lightning:button>
+                </aura:set>
+				<table class="slds-table slds-table_cell-buffer slds-table-bordered">
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <lightning:layout>
+                                <lightning:layoutItem flexibility="auto,no-grow">
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="No .">No.</div>
+                                    </th>
+                                </lightning:layoutItem>
+                                <lightning:layoutItem size="2">
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Account Name">Account Name</div>
+                                    </th>
+                                </lightning:layoutItem>
+                                <lightning:layoutItem size="2">
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Industry">Industry</div>
+                                    </th>
+                                </lightning:layoutItem>
+                                <lightning:layoutItem size="2">
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Type">Type</div>
+                                    </th>
+                                </lightning:layoutItem>
+                                <lightning:layoutItem size="2">
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Rating">Rating</div>
+                                    </th>
+                                </lightning:layoutItem>
+                            </lightning:layout>
+                        </tr>
+                    </thead>
+                </table>
+                <aura:iteration items="{!v.records}" var="record" indexVar="index">
+                    <lightning:layout>
+                        <lightning:layoutItem padding="around-small" flexibility="auto, no-grow">
+                            <div class="slds-text-heading_small slds-text-align_center">{!index + 1}.</div>
+                        </lightning:layoutItem>
+                        <c:AutoInsertDeleteChild record="{!record}"/>
+                        <lightning:layoutItem size="4" padding="around-small">
+                            <a name="{!index}" onclick="{!c.remove}">
+                                <lightning:icon iconName="utility:delete" alternativeText="delete"/>
+                            </a>
+                        </lightning:layoutItem>
+                    </lightning:layout>
+                </aura:iteration>
+                
+                <div class="slds-grid slds-grid-reverse">
+                    <div class="slds-col slds-size_4-of-12">
+                        <aura:if isTrue="{!v.visible}">
+                            <div class="slds-p-around_small">
+                                Saved {!v.rows} records !!!!
+                            </div>
+                        </aura:if>
+                    </div>
+                    <div class="slds-col slds-size_2-of-12">
+                        <lightning:button label="Save" title="Save" variant="brand" onclick="{!c.saveAccount}"/>
+                    </div>
+                </div>
+            </lightning:card>
+        </div>
+</aura:component>

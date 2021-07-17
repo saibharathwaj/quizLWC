@@ -1,0 +1,16 @@
+<aura:component controller="AirlineFlightDetails" 
+                implements="lightning:isUrlAddressable">
+    <aura:attribute name="flightlist" type="Flight_Details__c[]" />
+    <aura:attribute name="Test" type="String" default=""/>
+    <aura:attribute name="mycolumns" type="List"/>
+    <aura:handler name="init" value="{!this}" action="{!c.fetchFlightDetails}"/>
+    <aura:attribute name="url" type="String"/>
+    <lightning:navigation aura:id="navService"/>
+    <aura:attribute name="pageReference" type="Object"/>
+    <!-- Using Lightning: Datatable-->
+    <lightning:datatable data="{!v.flightlist}"
+                         columns="{!v.mycolumns}"
+                         keyField="id"
+                         hideCheckboxColumn="true"
+                         onrowaction="{!c.bookFlight}"/>
+</aura:component>

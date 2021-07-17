@@ -1,0 +1,24 @@
+.THIS .textInput{
+    color: Black;
+    font-weight: bold;
+    -webkit-text-fill-color: black;
+}
+.my-card{
+    display:block;
+    /* Using SLDS Token*/
+    background-color: var(--lwc-colorBackgroundHighlight);
+    color: var(--lwc-colorTextLinkFocus);
+    border-color: var(--lwc-colorBorderBrand);
+    /*Using Custom Token - DefaultTokens*/
+    /*background: var(--c-cardBackgroundColor);
+    color: var(--c-cardFontColor);*/
+    position:relative;
+}
+
+.my-tab{
+    background-color:var(--c-overallSiteColor);
+}
+
+.overallBG{
+    background-color:var(--c-overallSiteColor);
+}

@@ -1,0 +1,21 @@
+<aura:component access="global"
+                implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome"
+                controller="TreeGridApex">
+    <aura:handler name="init"
+                  value="{!this}"
+                  action="{!c.doInit}"/>
+    <aura:attribute name="gridColumns" type="List" access="PRIVATE"/>
+    <aura:attribute name="gridData" type="Object"/>
+    <aura:attribute name="isLoading" type="Boolean" default="false"/>
+    <div class="slds-m-around__small">
+        <lightning:treeGrid
+                            aura:id="treegrid_async"
+                            columns="{!v.gridColumns}"
+                            data="{!v.gridData}"
+                            keyField="name"
+                            isLoading="{!v.isLoading}"
+                            onToggle="{!c.handleRowToggle}"
+                            onrowselection="{!c.handleRowSelection}">
+        </lightning:treeGrid>
+    </div>
+</aura:component>

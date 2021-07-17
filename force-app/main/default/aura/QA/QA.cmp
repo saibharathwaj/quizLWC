@@ -1,0 +1,20 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" 
+                access="global"
+                controller="QAApex">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="responseQA" type="List"/>
+    <div class="slds-m-around_small">
+        <lightning:layout>
+            <lightning:layoutItem padding="around-small" size="4">
+                <lightning:card title="QA" iconName="standard:question_feed">
+                    <aura:iteration items="{!v.responseQA}" var="option" indexVar="index">
+                        <ui:outputText value="{!index+1}"/> <br/>
+                        <ui:outputText value="{!option.question}"/> <br/>
+                        &nbsp;
+                    </aura:iteration>
+                </lightning:card>
+            </lightning:layoutItem>
+        </lightning:layout>
+    </div>
+    
+</aura:component>

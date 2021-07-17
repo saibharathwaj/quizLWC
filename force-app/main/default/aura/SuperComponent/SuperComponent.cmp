@@ -1,0 +1,4 @@
+<aura:component extensible="true" abstract="true">
+	ParentBody {!v.body}
+    <aura:attribute name="Comp1" type="String" default="Master Details"/>
+</aura:component>

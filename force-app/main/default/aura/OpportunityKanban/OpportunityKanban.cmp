@@ -1,0 +1,85 @@
+<aura:component controller="OpportunityLightningKanbanController"
+                implements="force:appHostable,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global" >
+    <!--Scripts-->
+    <ltng:require scripts="/resource/jQuery,/resource/jQueryUI" afterScriptsLoaded="{!c.init}"/>
+    <!--<ltng:require scripts ="{!$Resource.jQuery}" afterScriptsLoaded="{!c.init}"/>
+    <ltng:require scripts ="{!$Resource.jQueryUI}" afterScriptsLoaded="{!c.init}"/>-->
+        
+    <!--Internal Attributes-->
+    <aura:attribute name="rows" type="List"/>
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="scriptsLoaded" type="Boolean" default="false"/>
+    <aura:attribute name="sortableApplied" type="Boolean" default="false"/>
+    
+    <!--Handlers-->
+    <aura:handler name="render" value="{!this}" action="{!c.applySortable}"/>
+    
+    <!--Spinner-->
+    <lightning:spinner aura:id="spinner" alternativeText="Loading" size="large" />
+    
+    <!--Kanban Column Headers-->
+    <div class="slds-grid">
+        <div class="slds-tabs--path" role="application">
+            <ul class="slds-tabs--path__nav" role="tablist">
+                <aura:iteration items="{!v.columns}" var="col">                
+                    <li class="slds-tabs--path__item slds-is-incomplete" role="presentation">
+                        <a class="slds-tabs--path__link" tabindex="-1" role="tab" href="javascript:void(0);">
+                            <aura:if isTrue="{! !col.isDropEnabled }">
+                                <lightning:helptext content="You cannot drop cards into this column!" class="slds-m-right_small"/>
+                            </aura:if>
+                            
+                            <span class="slds-tabs--path__title slds-text-heading--medium">{!col.label}</span>
+                        </a>
+                    </li>
+                </aura:iteration>
+            </ul>
+        </div>
+    </div>
+    
+    <!--Kanban Columns-->
+    <div class="slds-grid">        
+        <aura:iteration items="{!v.rows}" var="row">
+            <div class="slds-col slds-lane slds-has-dividers--around-space slds-scrollable_y" data-name="{!row.key.label}" data-drop-enabled="{!row.key.isDropEnabled}">
+                <aura:iteration items="{!row.value}" var="opp">
+                    <div class="slds-item slds-m-around--small" data-id="{!opp.Id}" data-status="{!opp.StageName}">
+                        <div class="slds-tile slds-tile--board">
+                            <h3 class="slds-section-title--divider slds-m-bottom--x-small slds-title slds-theme_shade">
+                                <div class="slds-grid">
+                                	<div class="slds-col">
+                                    	<div class="slds-m-top_x-small">
+                                            <a href="{!'/' + opp.Id}" target="_blank">{!opp.Name}</a>
+                                        </div>
+                                    </div>
+                                    <div class="slds-col slds-text-align_right">
+                                    	<lightning:buttonGroup >
+                                            <lightning:buttonIcon iconName="utility:call" variant="border-filled" alternativeText="Log A Call" onclick="{!c.logACall}" name="{!opp.Id}" />
+                                            <lightning:buttonIcon iconName="utility:event" variant="border-filled" alternativeText="Log A Meeting" onclick="{!c.logAMeeting}" name="{!opp.Id}" />
+                                        </lightning:buttonGroup>
+                                    </div>
+                                </div>
+                            </h3>
+                            
+                            <div class="slds-tile__detail slds-text-body--small">
+                                <p class="slds-truncate">
+                                    {!opp.LeadSource}
+                                </p>
+                                
+                                <p class="slds-truncate">
+                                    {!opp.Type}
+                                </p>
+                                
+                                <p class="slds-truncate">
+                                    {!opp.Amount}
+                                </p>
+                                
+                                <p class="slds-truncate">
+                                    {!opp.Account.Name}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </aura:iteration> 
+            </div>
+        </aura:iteration> 
+    </div>
+</aura:component>

@@ -1,0 +1,6 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+	Hello World	
+    <p>Hello World</p>
+    <br/>
+    <p><lightning:formattedText linkify="true" value="Please mail me at venkathsaibharath@gmail.com"/></p>
+</aura:component>
